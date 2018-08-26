@@ -30,7 +30,7 @@ def col_win(b, player):
 
 def row_win(b, player):
     for row in range(3):
-        if position(b, row, 0) == player and position(b, row, 1) == player and position(b, row, 2):
+        if position(b, row, 0) == player and position(b, row, 1) == player and position(b, row, 2) == player:
             return True
     return False
 
@@ -52,12 +52,11 @@ def other_player(cur_player):
 
 if __name__ == "__main__":
     test_board = new_board()
-    test_board = make_move(test_board, 1, 1, 'X')
-    test_board = make_move(test_board, 1, 0, 'O')
-    test_board = make_move(test_board, 2, 0, 'O')
+    test_board = make_move(test_board, 0, 1, 'X')
+    test_board = make_move(test_board, 1, 1, 'O')
     test_board = make_move(test_board, 0, 0, 'X')
-    test_board = make_move(test_board, 2, 2, 'X')
-    print(diag_win(test_board, 'x'))
+
+    print(row_win(test_board, 'X'))
     print_board(test_board)
 
 
