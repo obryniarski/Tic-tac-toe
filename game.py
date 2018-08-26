@@ -12,9 +12,7 @@ print(factorial(5))
 
 
 def new_board():
-    placeholder = '~'
-    row = [placeholder, placeholder, placeholder]
-    return [row, row, row]
+    return [['~', '~', '~'], ['~', '~', '~'], ['~', '~', '~']]
 
 
 def position(board, row, column):
@@ -30,5 +28,30 @@ def print_board(b):
         print(row)
 
 
+def make_move(b, row, column, player):
+    assert b[row][column] == '~', 'That space is already taken'
+    b[row][column] = player
+    return b
+
+
+def col_win(b, player):
+    for col in range(3):
+        if position(b, 0, col) == player and position(b, 1, col) == player and position(b, 2, col) == player:
+            return True
+    return False
+
+
+def row_win(b, player):
+    for row in range(3):
+        if position(b, row, 0) == player and position(b, row, 1) == player and position(b, row, 2):
+            return True
+    return False
+
+
 test_board = new_board()
+test_board = make_move(test_board, 1, 1, 'X')
+test_board = make_move(test_board, 1, 0, 'O')
+test_board = make_move(test_board, 0, 0, 'O')
+test_board = make_move(test_board, 2, 0, 'O')
+print(col_win(test_board, 'O'))
 print_board(test_board)
