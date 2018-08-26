@@ -35,10 +35,29 @@ def row_win(b, player):
     return False
 
 
-test_board = new_board()
-test_board = make_move(test_board, 1, 1, 'X')
-test_board = make_move(test_board, 1, 0, 'O')
-test_board = make_move(test_board, 0, 0, 'O')
-test_board = make_move(test_board, 2, 0, 'O')
-print(col_win(test_board, 'O'))
-print_board(test_board)
+def diag_win(b, player):
+    if position(b, 0, 0) == player and position(b, 1, 1) == player and position(b, 2, 2) == player:
+        return True
+    elif position(b, 0, 2) == player and position(b, 1, 1) == player and position(b, 2, 0) == player:
+        return True
+    return False
+
+
+def other_player(cur_player):
+    if cur_player == 'X':
+        return 'O'
+    else:
+        return 'X'
+
+
+if __name__ == "__main__":
+    test_board = new_board()
+    test_board = make_move(test_board, 1, 1, 'X')
+    test_board = make_move(test_board, 1, 0, 'O')
+    test_board = make_move(test_board, 2, 0, 'O')
+    test_board = make_move(test_board, 0, 0, 'X')
+    test_board = make_move(test_board, 2, 2, 'X')
+    print(diag_win(test_board, 'x'))
+    print_board(test_board)
+
+
