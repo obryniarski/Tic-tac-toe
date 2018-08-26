@@ -43,6 +43,10 @@ def diag_win(b, player):
     return False
 
 
+def any_win(b, player):
+    return row_win(b, player) or col_win(b, player) or diag_win(b, player)
+
+
 def other_player(cur_player):
     if cur_player == 'X':
         return 'O'
@@ -50,13 +54,23 @@ def other_player(cur_player):
         return 'X'
 
 
+def board_full(b):
+    return '~' not in [position(b, row, col) for row in range(3) for col in range(3)]
+
+
 if __name__ == "__main__":
     test_board = new_board()
-    test_board = make_move(test_board, 0, 1, 'X')
-    test_board = make_move(test_board, 1, 1, 'O')
     test_board = make_move(test_board, 0, 0, 'X')
+    test_board = make_move(test_board, 0, 1, 'O')
+    test_board = make_move(test_board, 0, 2, 'X')
+    test_board = make_move(test_board, 1, 0, 'O')
+    test_board = make_move(test_board, 1, 1, 'O')
+    test_board = make_move(test_board, 1, 2, 'X')
+    test_board = make_move(test_board, 2, 0, 'X')
+    test_board = make_move(test_board, 2, 1, 'O')
 
     print(row_win(test_board, 'X'))
     print_board(test_board)
+    print(board_full(test_board))
 
 
